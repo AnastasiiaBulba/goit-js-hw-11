@@ -11,16 +11,40 @@ const gallery = document.querySelector('.gallery');
 const loader = document.getElementById('loader');
 let lightbox = new SimpleLightbox('.gallery a');
 
+function showError(message) {
+  iziToast.error({
+    message,
+    position: 'topRight',
+    // timeout: 0,
+    backgroundColor: '#EF4040',
+    messageColor: '#FFFFFF',
+    close: true,
+  });
+}
+
+function showInfo(message) {
+  iziToast.info({
+    message,
+    position: 'topRight',
+    // timeout: 0,
+    backgroundColor: '#EF4040',
+    messageColor: '#FFFFFF',
+    close: true,
+  });
+}
+
 form.addEventListener('submit', async event => {
   event.preventDefault();
 
   const query = event.currentTarget.elements.searchQuery.value.trim();
   if (!query) {
-    iziToast.warning({
-      title: 'Warning',
-      message: 'Please enter a search term.',
-    });
+    showError('Please enter a search term.');
     return;
+    // iziToast.warning({
+    //   title: 'Warning',
+    //   message: 'Please enter a search term.',
+    // });
+    // return;
   }
 
   gallery.innerHTML = '';
@@ -31,11 +55,14 @@ form.addEventListener('submit', async event => {
   loader.classList.add('hidden');
 
   if (data.hits.length === 0) {
-    iziToast.info({
-      title: 'Info',
-      message:
-        'Sorry, there are no images matching your search query. Please try again!',
-    });
+    showInfo(
+      'Sorry, there are no images matching your search query. Please try again!'
+    );
+    // iziToast.info({
+    //   title: 'Info',
+    //   message:
+    //     'Sorry, there are no images matching your search query. Please try again!',
+    // });
     return;
   }
 
