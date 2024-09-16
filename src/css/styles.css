@@ -3,6 +3,8 @@
 @import url('./container.css');
 @import url('./animations.css');
 
+/* Основні стилі */
+
 body {
   display: flex;
   flex-direction: column;
@@ -39,6 +41,7 @@ input {
 input:hover {
   border-color: #000;
 }
+
 input:focus-within {
   border-color: #4e75ff;
 }
@@ -60,6 +63,7 @@ button {
   justify-items: center;
   padding: 0;
   list-style: none;
+  max-width: 1128px;
 }
 
 .gallery-item {
@@ -104,4 +108,80 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+@media (max-width: 320px) {
+  .search-form {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .gallery-item {
+    width: 100%;
+    height: auto;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (min-width: 321px) and (max-width: 767px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .gallery-item {
+    width: 100%;
+    height: 200px;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .search-form {
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gallery-item {
+    width: 360px;
+    height: 200px;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media (min-width: 1128px) {
+  .gallery {
+    max-width: 1128px;
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
